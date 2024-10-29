@@ -20,9 +20,11 @@ To import the dashboard stuff( for the UI)
 
 
 ![image](https://github.com/user-attachments/assets/0e51cd70-dcd4-4bd1-bcc5-0eb6010f864d)
+
 image: click the hamburger menu -> manage palette
 Then install the node-red-dashboard
 ![image](https://github.com/user-attachments/assets/6d112bbc-d590-41d9-a16a-e4fd56535363)
+
 Image: install button to expand your node palettes. 
 ### done importing
 
@@ -41,12 +43,15 @@ Checking the variable "lastFed", display it in our Node-red UI, beautifying it s
 
 Sceenshots
 ![image](https://github.com/user-attachments/assets/1c6ad450-3d9f-4504-b775-674834ea0680)
+
 Image: The flow. note that now after setting when the fish last has been fed, updating the display comes immediately which makes it very satisfying to play with
 
 ![image](https://github.com/user-attachments/assets/8ad89da5-19bc-4479-8beb-b4063210f648)
+
 Image: what you can have as a dashboard. Strap it to the fish tank aswell and you already have your button
 
 ![image](https://github.com/user-attachments/assets/7ad39835-cd82-4eb4-afea-18d1a46fb848)
+
 Image: note to myself on how to get the current date in milliseconds, saving a node-red context variable
 
 ![image](https://github.com/user-attachments/assets/53560adf-ef7a-4528-99b6-efb3f0adbcf0)
