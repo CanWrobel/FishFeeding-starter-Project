@@ -1,6 +1,28 @@
 # FishFeeding-starter-Project
-Motivation: Want to know if the fish has been fed in the last X - Hours. 
-Approach:
+###How to import:
+Click the hamburger, then import or use the appropriate hotkey
+![image](https://github.com/user-attachments/assets/3ac86fb6-f7cf-4a79-895f-5d299d21e469)
+Image: top right of nodered
+
+Paste everything from fishFeedingFlow.json in here (you can also click "new flow" if you want)
+![image](https://github.com/user-attachments/assets/e954f18b-0034-4a71-844b-bcc05d1fb7e6)
+Image: import function from clipboard
+
+
+If the import looks like this, you need to install the dashboard nodes
+![image](https://github.com/user-attachments/assets/6fb786d2-bbaa-4d04-b3dc-c1cb42184b3e)
+Image: Messed up node because you are missing it in the palette
+To import the dashboard stuff( for the UI)
+![image](https://github.com/user-attachments/assets/0e51cd70-dcd4-4bd1-bcc5-0eb6010f864d)
+image: click the hamburger menu -> manage palette
+Then install the node-red-dashboard
+![image](https://github.com/user-attachments/assets/6d112bbc-d590-41d9-a16a-e4fd56535363)
+Image: install button to expand your node palettes. 
+###done importing
+
+###Motivation: 
+Want to know if the fish has been fed in the last X - Hours. 
+###Approach:
 Node-Red-Flow involving mqtt and node-red context variables. 
 ESP32 that listens to its own topic and blinks an LED thats strapped to the fish tank
 
