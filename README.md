@@ -11,6 +11,8 @@ Image: import function from clipboard
 
 If the import looks like this, you need to install the dashboard nodes
 ![image](https://github.com/user-attachments/assets/6fb786d2-bbaa-4d04-b3dc-c1cb42184b3e)
+
+
 Image: Messed up node because you are missing it in the palette
 
 
