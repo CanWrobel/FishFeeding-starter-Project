@@ -1,0 +1,340 @@
+[
+    {
+        "id": "5ef66ad772c42de8",
+        "type": "tab",
+        "label": "Fishmaster",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "90c744a619986dfe",
+        "type": "group",
+        "z": "5ef66ad772c42de8",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "49114dc64a99de89",
+            "e169b7a335b09224",
+            "a1b8e1969b34299e",
+            "f4f9e2410a2a0e90",
+            "299307c8849edaad"
+        ],
+        "x": 84,
+        "y": 19,
+        "w": 642,
+        "h": 202
+    },
+    {
+        "id": "18b8416a25ae5f88",
+        "type": "group",
+        "z": "5ef66ad772c42de8",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "4cb14d04d965c47c",
+            "d8d7faaf2f5bc813",
+            "d432172b3c294bb8",
+            "19fee068bf74df80",
+            "35e1f8c72214a924",
+            "fc103f45c096e327",
+            "82642fb2f5f1031a",
+            "2e6d0ad7f86bd5ee"
+        ],
+        "x": 94,
+        "y": 239,
+        "w": 772,
+        "h": 362
+    },
+    {
+        "id": "49114dc64a99de89",
+        "type": "inject",
+        "z": "5ef66ad772c42de8",
+        "g": "90c744a619986dfe",
+        "name": "ButtonTrigger",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 210,
+        "y": 120,
+        "wires": [
+            [
+                "e169b7a335b09224"
+            ]
+        ]
+    },
+    {
+        "id": "e169b7a335b09224",
+        "type": "function",
+        "z": "5ef66ad772c42de8",
+        "g": "90c744a619986dfe",
+        "name": "saves last fed",
+        "func": "flow.set(\"lastFed\", new Date().getTime());\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 120,
+        "wires": [
+            [
+                "4cb14d04d965c47c"
+            ]
+        ]
+    },
+    {
+        "id": "4cb14d04d965c47c",
+        "type": "function",
+        "z": "5ef66ad772c42de8",
+        "g": "18b8416a25ae5f88",
+        "name": "returns hoursPassed since last fed",
+        "func": "// Retrieve the stored time\nconst lastFed = flow.get(\"lastFed\");\n\nif (lastFed) {\n    // Current time in milliseconds\n    const currentTime = new Date().getTime();\n\n    // Calculate the difference in hours\n    const hoursPassed = (currentTime - lastFed) / (1000 * 60 * 60);\n\n    // Return the result\n    msg.payload = hoursPassed\n} else {\n    // If lastFed is not set, return a message\n    msg.payload = \"lastFed time is not set.\";\n}\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 360,
+        "wires": [
+            [
+                "d432172b3c294bb8",
+                "35e1f8c72214a924",
+                "fc103f45c096e327"
+            ]
+        ]
+    },
+    {
+        "id": "d8d7faaf2f5bc813",
+        "type": "inject",
+        "z": "5ef66ad772c42de8",
+        "g": "18b8416a25ae5f88",
+        "name": "every 15 minutes trigger",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "900",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 250,
+        "y": 320,
+        "wires": [
+            [
+                "4cb14d04d965c47c"
+            ]
+        ]
+    },
+    {
+        "id": "d432172b3c294bb8",
+        "type": "debug",
+        "z": "5ef66ad772c42de8",
+        "g": "18b8416a25ae5f88",
+        "name": "debug 58",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "19fee068bf74df80",
+        "type": "ui_text",
+        "z": "5ef66ad772c42de8",
+        "g": "18b8416a25ae5f88",
+        "group": "52120179809bd9a7",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Fishy",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 390,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "a1b8e1969b34299e",
+        "type": "ui_button",
+        "z": "5ef66ad772c42de8",
+        "g": "90c744a619986dfe",
+        "name": "",
+        "group": "52120179809bd9a7",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "FEED DA FISH",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 200,
+        "y": 60,
+        "wires": [
+            [
+                "e169b7a335b09224"
+            ]
+        ]
+    },
+    {
+        "id": "35e1f8c72214a924",
+        "type": "function",
+        "z": "5ef66ad772c42de8",
+        "g": "18b8416a25ae5f88",
+        "name": "beautify hoursPassed since last fed",
+        "func": "var hoursPassed = msg.payload\nvar nameFish = \"Fishy\"\nvar message = `You last fed ${nameFish} ${hoursPassed} ago`;\nmsg.payload = message\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 480,
+        "wires": [
+            [
+                "19fee068bf74df80"
+            ]
+        ]
+    },
+    {
+        "id": "fc103f45c096e327",
+        "type": "function",
+        "z": "5ef66ad772c42de8",
+        "g": "18b8416a25ae5f88",
+        "name": "check if time to feed",
+        "func": "var hoursPassed = msg.payload\nvar hoursToFeedAgain = 12\nif (hoursPassed > hoursToFeedAgain){\n    //this means the fish has been fed in the time we \n    //have set to be the interval to feed\n    var message = \"once\"\n    msg.payload = message \n}\nif (hoursPassed< hoursToFeedAgain){\n    //fishy is fed :)\n    var message = \"twice\"\n    msg.payload = message\n}\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 440,
+        "wires": [
+            [
+                "82642fb2f5f1031a"
+            ]
+        ]
+    },
+    {
+        "id": "82642fb2f5f1031a",
+        "type": "mqtt out",
+        "z": "5ef66ad772c42de8",
+        "g": "18b8416a25ae5f88",
+        "name": "",
+        "topic": "blinky",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "",
+        "x": 790,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "f4f9e2410a2a0e90",
+        "type": "mqtt in",
+        "z": "5ef66ad772c42de8",
+        "g": "90c744a619986dfe",
+        "name": "",
+        "topic": "button",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 180,
+        "wires": [
+            [
+                "e169b7a335b09224"
+            ]
+        ]
+    },
+    {
+        "id": "299307c8849edaad",
+        "type": "comment",
+        "z": "5ef66ad772c42de8",
+        "g": "90c744a619986dfe",
+        "name": "Handling the button press after the Fish has been fed",
+        "info": "",
+        "x": 510,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "2e6d0ad7f86bd5ee",
+        "type": "comment",
+        "z": "5ef66ad772c42de8",
+        "g": "18b8416a25ae5f88",
+        "name": "Handling the check when too much time has passed after the fish has been fed",
+        "info": "",
+        "x": 450,
+        "y": 280,
+        "wires": []
+    }
+]
