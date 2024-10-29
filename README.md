@@ -27,6 +27,8 @@ To import the dashboard stuff( for the UI)
 ![image](https://github.com/user-attachments/assets/0e51cd70-dcd4-4bd1-bcc5-0eb6010f864d)
 
 image: click the hamburger menu -> manage palette
+
+
 Then install the node-red-dashboard
 
 ![image](https://github.com/user-attachments/assets/6d112bbc-d590-41d9-a16a-e4fd56535363)
